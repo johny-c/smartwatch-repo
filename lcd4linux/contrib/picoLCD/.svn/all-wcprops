@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/lcd4linux/!svn/ver/1095/trunk/contrib/picoLCD
+END
+lcd4linux.conf
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/lcd4linux/!svn/ver/1095/trunk/contrib/picoLCD/lcd4linux.conf
+END
+rsstimer.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/lcd4linux/!svn/ver/986/trunk/contrib/picoLCD/rsstimer.py
+END
+lcd4linux.conf.rss
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/lcd4linux/!svn/ver/1095/trunk/contrib/picoLCD/lcd4linux.conf.rss
+END
+mrtg.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/lcd4linux/!svn/ver/986/trunk/contrib/picoLCD/mrtg.py
+END
+lcd4linux.conf.mrtg
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/lcd4linux/!svn/ver/1095/trunk/contrib/picoLCD/lcd4linux.conf.mrtg
+END
+lcd4linux.conf.rss.timers
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/lcd4linux/!svn/ver/1095/trunk/contrib/picoLCD/lcd4linux.conf.rss.timers
+END
