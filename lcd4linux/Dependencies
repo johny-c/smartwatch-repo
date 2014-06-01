@@ -1,0 +1,5 @@
+Package-Dependencies needed to compile this project:
+
+aclocal-1.11
+libtool 2.4.2-1ubuntu1
+libusb-dev 2:0.1.12-20
