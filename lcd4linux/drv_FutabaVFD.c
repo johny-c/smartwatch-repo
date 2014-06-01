@@ -281,6 +281,7 @@ static void plugin_brightness(RESULT * result, const int argc, RESULT * argv[])
     default:
 	error("%s::brightness(): wrong number of parameters", Name);
 	SetResult(&result, R_STRING, "");
+	break;
     }
 }
 

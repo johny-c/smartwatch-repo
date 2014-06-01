@@ -67,6 +67,7 @@
 
 #define DPFAXHANDLE void *	// Handle needed for dpf_ax access
 #define DPF_BPP 2		//bpp for dfp-ax is currently always 2!
+typedef struct usb_device_descriptor usb_dev_h; //the struct usb_dev_handle was substituted by struct usb_device_descriptor... Code was corrected!
 
 /**
  * Open DPF device.
@@ -457,7 +458,7 @@ DRIVER drv_DPF = {
 /* The DPF context structure */
 typedef
     struct dpf_context {
-    usb_dev_handle *udev;
+    usb_dev_h *udev;
     unsigned int width;
     unsigned int height;
 } DPFContext;
@@ -479,7 +480,7 @@ DPFAXHANDLE dpf_ax_open(const char *dev)
 {
     DPFContext *dpf;
     int index = -1;
-    usb_dev_handle *u;
+    usb_dev_h *u;
 
     if (dev && strlen(dev) == 4 && (strncmp(dev, "usb", 3) == 0 || strncmp(dev, "dpf", 3) == 0))
 	index = dev[3] - '0';
@@ -525,16 +526,16 @@ DPFAXHANDLE dpf_ax_open(const char *dev)
 	return NULL;
     }
 
-    u = usb_open(d);
+    u = (usb_dev_h *) usb_open(d);
     if (u == NULL) {
 	fprintf(stderr, "dpf_ax_open: failed to open usb device '%s'!\n", dev);
 	free(dpf);
 	return NULL;
     }
 
-    if (usb_claim_interface(u, 0) < 0) {
+    if (usb_claim_interface((usb_dev_handle*)u, 0) < 0) {
 	fprintf(stderr, "dpf_ax_open: failed to claim usb device!\n");
-	usb_close(u);
+	usb_close((usb_dev_handle*) u);
 	free(dpf);
 	return NULL;
     }
@@ -569,8 +570,8 @@ void dpf_ax_close(DPFAXHANDLE h)
 {
     DPFContext *dpf = (DPFContext *) h;
 
-    usb_release_interface(dpf->udev, 0);
-    usb_close(dpf->udev);
+    usb_release_interface((usb_dev_handle*)dpf->udev, 0);
+    usb_close((usb_dev_handle*)dpf->udev);
     free(dpf);
 }
 
@@ -681,20 +682,20 @@ static int wrap_scsi(DPFContext * h, unsigned char *cmd, int cmdlen, char out,
     g_buf[10] = block_len >> 16;
     g_buf[11] = block_len >> 24;
 
-    ret = usb_bulk_write(h->udev, ENDPT_OUT, (const char *) g_buf, sizeof(g_buf), 1000);
+    ret = usb_bulk_write((usb_dev_handle*)h->udev, ENDPT_OUT, (const char *) g_buf, sizeof(g_buf), 1000);
     if (ret < 0)
 	return ret;
 
     if (out == DIR_OUT) {
 	if (data) {
-	    ret = usb_bulk_write(h->udev, ENDPT_OUT, (const char *) data, block_len, 3000);
+	    ret = usb_bulk_write((usb_dev_handle*)h->udev, ENDPT_OUT, (const char *) data, block_len, 3000);
 	    if (ret != (int) block_len) {
 		fprintf(stderr, "dpf_ax ERROR: bulk write.\n");
 		return ret;
 	    }
 	}
     } else if (data) {
-	ret = usb_bulk_read(h->udev, ENDPT_IN, (char *) data, block_len, 4000);
+	ret = usb_bulk_read((usb_dev_handle*)h->udev, ENDPT_IN, (char *) data, block_len, 4000);
 	if (ret != (int) block_len) {
 	    fprintf(stderr, "dpf_ax ERROR: bulk read.\n");
 	    return ret;
@@ -706,7 +707,7 @@ static int wrap_scsi(DPFContext * h, unsigned char *cmd, int cmdlen, char out,
     int timeout = 0;
     do {
 	timeout = 0;
-	ret = usb_bulk_read(h->udev, ENDPT_IN, (char *) ansbuf, len, 5000);
+	ret = usb_bulk_read((usb_dev_handle*)h->udev, ENDPT_IN, (char *) ansbuf, len, 5000);
 	if (ret != len) {
 	    fprintf(stderr, "dpf_ax ERROR: bulk ACK read.\n");
 	    timeout = 1;

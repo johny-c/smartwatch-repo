@@ -486,7 +486,7 @@ static int cfg_check_source(const char *file)
 	error = -1;
     }
 #if ! defined(__CYGWIN__)
-    if (stbuf.st_mode & S_IRWXG || stbuf.st_mode & S_IRWXO) {
+    if ((stbuf.st_mode & S_IRWXG) || (stbuf.st_mode & S_IRWXO)) {
 	error("security error: group or other have access to '%s'", file);
 	error = -1;
     }

@@ -66,7 +66,7 @@
 #define HAVE_ICONV 1
 
 /* Define to 1 if you have the <inttypes.h> header file. */
-/* #undef HAVE_INTTYPES_H */
+#define HAVE_INTTYPES_H 1
 
 /* Define to 1 if you have the <jpeglib.h> header file. */
 /* #undef HAVE_JPEGLIB_H */
@@ -108,7 +108,7 @@
 #define HAVE_MEMMOVE 1
 
 /* Define to 1 if you have the <memory.h> header file. */
-/* #undef HAVE_MEMORY_H */
+#define HAVE_MEMORY_H 1
 
 /* Define to 1 if you have the `memset' function. */
 #define HAVE_MEMSET 1
@@ -166,10 +166,10 @@
 
 /* Define to 1 if `stat' has the bug that it succeeds when given the
    zero-length file name argument. */
-#define HAVE_STAT_EMPTY_STRING_BUG 1
+/* #undef HAVE_STAT_EMPTY_STRING_BUG */
 
 /* Define to 1 if you have the <stdint.h> header file. */
-/* #undef HAVE_STDINT_H */
+#define HAVE_STDINT_H 1
 
 /* Define to 1 if you have the <stdlib.h> header file. */
 #define HAVE_STDLIB_H 1
@@ -193,7 +193,7 @@
 #define HAVE_STRFTIME 1
 
 /* Define to 1 if you have the <strings.h> header file. */
-/* #undef HAVE_STRINGS_H */
+#define HAVE_STRINGS_H 1
 
 /* Define to 1 if you have the <string.h> header file. */
 #define HAVE_STRING_H 1
@@ -243,13 +243,13 @@
 #define HAVE_SYS_SOCKET_H 1
 
 /* Define to 1 if you have the <sys/stat.h> header file. */
-/* #undef HAVE_SYS_STAT_H */
+#define HAVE_SYS_STAT_H 1
 
 /* Define to 1 if you have the <sys/time.h> header file. */
 #define HAVE_SYS_TIME_H 1
 
 /* Define to 1 if you have the <sys/types.h> header file. */
-/* #undef HAVE_SYS_TYPES_H */
+#define HAVE_SYS_TYPES_H 1
 
 /* Define to 1 if you have the <sys/vfs.h> header file. */
 #define HAVE_SYS_VFS_H 1
@@ -264,7 +264,7 @@
 #define HAVE_UNISTD_H 1
 
 /* Define to 1 if you have the <usb.h> header file. */
-#define HAVE_USB_H 1
+/* #undef HAVE_USB_H */
 
 /* Define to 1 if you have the `vfork' function. */
 #define HAVE_VFORK 1
@@ -279,17 +279,17 @@
 #define HAVE_WORKING_VFORK 1
 
 /* Define to 1 if you have the <X11/Xlib.h> header file. */
-/* #undef HAVE_X11_XLIB_H */
+#define HAVE_X11_XLIB_H 1
 
 /* Define to 1 if you have the <X11/Xutil.h> header file. */
-/* #undef HAVE_X11_XUTIL_H */
+#define HAVE_X11_XUTIL_H 1
 
 /* Define as const if the declaration of iconv() needs const. */
 #define ICONV_CONST 
 
 /* Define to 1 if `lstat' dereferences a symlink specified with a trailing
    slash. */
-/* #undef LSTAT_FOLLOWS_SLASHED_SYMLINK */
+#define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
 
 /* Define to the sub-directory in which libtool stores uninstalled libraries.
    */
@@ -476,13 +476,13 @@
 #define VERSION "0.11.0-SVN"
 
 /* ASTUSB driver */
-#define WITH_ASTUSB 1
+/* #undef WITH_ASTUSB */
 
 /* Beckmann&Egle driver */
 #define WITH_BECKMANNEGLE 1
 
 /* BWCT driver */
-#define WITH_BWCT 1
+/* #undef WITH_BWCT */
 
 /* Crystalfontz driver */
 #define WITH_CRYSTALFONTZ 1
@@ -515,13 +515,13 @@
 #define WITH_FW8888 1
 
 /* G-15 driver */
-#define WITH_G15 1
+/* #undef WITH_G15 */
 
 /* GD library */
 /* #undef WITH_GD */
 
 /* GLCD2USB driver */
-#define WITH_GLCD2USB 1
+/* #undef WITH_GLCD2USB */
 
 /* HD44780 driver */
 #define WITH_HD44780 1
@@ -533,10 +533,10 @@
 /* #undef WITH_IMAGE */
 
 /* IRLCD driver */
-#define WITH_IRLCD 1
+/* #undef WITH_IRLCD */
 
 /* LCD2USB driver */
-#define WITH_LCD2USB 1
+/* #undef WITH_LCD2USB */
 
 /* LCD-Linux driver */
 /* #undef WITH_LCDLINUX */
@@ -563,7 +563,7 @@
 #define WITH_MATRIXORBITAL 1
 
 /* MatrixOrbitalGX driver */
-#define WITH_MATRIXORBITALGX 1
+/* #undef WITH_MATRIXORBITALGX */
 
 /* MDM166A driver */
 /* #undef WITH_MDM166A */
@@ -593,10 +593,10 @@
 #define WITH_PICGRAPHIC 1
 
 /* picoLCD driver */
-#define WITH_PICOLCD 1
+/* #undef WITH_PICOLCD */
 
 /* picoLCDGraphic driver */
-#define WITH_PICOLCDGRAPHIC 1
+/* #undef WITH_PICOLCDGRAPHIC */
 
 /* PNG driver */
 /* #undef WITH_PNG */
@@ -620,7 +620,7 @@
 #define WITH_SERIAL 1
 
 /* ShuttleVFD driver */
-#define WITH_SHUTTLEVFD 1
+/* #undef WITH_SHUTTLEVFD */
 
 /* SimpleLCD driver */
 #define WITH_SIMPLELCD 1
@@ -635,13 +635,13 @@
 #define WITH_TEAK_LCM 1
 
 /* TREFON driver */
-#define WITH_TREFON 1
+/* #undef WITH_TREFON */
 
 /* ULA200 driver */
 /* #undef WITH_ULA200 */
 
 /* USBHUB driver */
-#define WITH_USBHUB 1
+/* #undef WITH_USBHUB */
 
 /* USBLCD driver */
 #define WITH_USBLCD 1
@@ -653,10 +653,10 @@
 #define WITH_WINCORNIXDORF 1
 
 /* X11 driver */
-/* #undef WITH_X11 */
+#define WITH_X11 1
 
 /* Define to 1 if the X Window System is missing or not being used. */
-#define X_DISPLAY_MISSING 1
+/* #undef X_DISPLAY_MISSING */
 
 /* Define to empty if `const' does not conform to ANSI C. */
 /* #undef const */
