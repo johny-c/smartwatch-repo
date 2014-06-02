@@ -1,0 +1,7 @@
+Package-Dependencies needed to compile this project:
+
+automake
+aclocal-1.11 Should be already installed on ubuntu: check "whereis aclocal" 
+autotoos-dev
+libtool
+libusb-dev 2:0.1.12-20 Note: Version number is here important!!! 
