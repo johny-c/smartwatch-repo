@@ -264,7 +264,7 @@
 #define HAVE_UNISTD_H 1
 
 /* Define to 1 if you have the <usb.h> header file. */
-/* #undef HAVE_USB_H */
+#define HAVE_USB_H 1
 
 /* Define to 1 if you have the `vfork' function. */
 #define HAVE_VFORK 1
@@ -476,13 +476,13 @@
 #define VERSION "0.11.0-SVN"
 
 /* ASTUSB driver */
-/* #undef WITH_ASTUSB */
+#define WITH_ASTUSB 1
 
 /* Beckmann&Egle driver */
 #define WITH_BECKMANNEGLE 1
 
 /* BWCT driver */
-/* #undef WITH_BWCT */
+#define WITH_BWCT 1
 
 /* Crystalfontz driver */
 #define WITH_CRYSTALFONTZ 1
@@ -515,13 +515,13 @@
 #define WITH_FW8888 1
 
 /* G-15 driver */
-/* #undef WITH_G15 */
+#define WITH_G15 1
 
 /* GD library */
 /* #undef WITH_GD */
 
 /* GLCD2USB driver */
-/* #undef WITH_GLCD2USB */
+#define WITH_GLCD2USB 1
 
 /* HD44780 driver */
 #define WITH_HD44780 1
@@ -533,10 +533,10 @@
 /* #undef WITH_IMAGE */
 
 /* IRLCD driver */
-/* #undef WITH_IRLCD */
+#define WITH_IRLCD 1
 
 /* LCD2USB driver */
-/* #undef WITH_LCD2USB */
+#define WITH_LCD2USB 1
 
 /* LCD-Linux driver */
 /* #undef WITH_LCDLINUX */
@@ -563,7 +563,7 @@
 #define WITH_MATRIXORBITAL 1
 
 /* MatrixOrbitalGX driver */
-/* #undef WITH_MATRIXORBITALGX */
+#define WITH_MATRIXORBITALGX 1
 
 /* MDM166A driver */
 /* #undef WITH_MDM166A */
@@ -593,10 +593,10 @@
 #define WITH_PICGRAPHIC 1
 
 /* picoLCD driver */
-/* #undef WITH_PICOLCD */
+#define WITH_PICOLCD 1
 
 /* picoLCDGraphic driver */
-/* #undef WITH_PICOLCDGRAPHIC */
+#define WITH_PICOLCDGRAPHIC 1
 
 /* PNG driver */
 /* #undef WITH_PNG */
@@ -620,7 +620,7 @@
 #define WITH_SERIAL 1
 
 /* ShuttleVFD driver */
-/* #undef WITH_SHUTTLEVFD */
+#define WITH_SHUTTLEVFD 1
 
 /* SimpleLCD driver */
 #define WITH_SIMPLELCD 1
@@ -635,13 +635,13 @@
 #define WITH_TEAK_LCM 1
 
 /* TREFON driver */
-/* #undef WITH_TREFON */
+#define WITH_TREFON 1
 
 /* ULA200 driver */
 /* #undef WITH_ULA200 */
 
 /* USBHUB driver */
-/* #undef WITH_USBHUB */
+#define WITH_USBHUB 1
 
 /* USBLCD driver */
 #define WITH_USBLCD 1
