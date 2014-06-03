@@ -1,4 +1,11 @@
-
-
+# Folders
+.settings
 .metadata
 RemoteSystemsTempFiles/
+
+# Files
+.cproject
+.project
+*.log
+
+# Binaries
