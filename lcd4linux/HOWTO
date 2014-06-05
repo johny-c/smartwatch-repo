@@ -1,0 +1,19 @@
+This file describe how to make the executable for lcd4linux:
+
+1) Open the File DEPENDENCIES and check if all the packages are installed
+
+2) Using the existing makefile run "make distclean"
+
+3) Enter su-Mode
+
+4) Run "./configure"
+
+5) Run automake
+
+6) run make
+
+Ready ;)
+
+P.S. Please run make the first time as su from Terminal, as Eclipse 
+does not run as su, causing the make to fail (some directories must 
+be created) 
