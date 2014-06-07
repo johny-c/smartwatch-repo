@@ -49,6 +49,7 @@
 
 extern DRIVER drv_ASTUSB;
 extern DRIVER drv_BeckmannEgle;
+extern DRIVER drv_Bluetooth;
 extern DRIVER drv_BWCT;
 extern DRIVER drv_Crystalfontz;
 extern DRIVER drv_Curses;
@@ -112,6 +113,9 @@ char *output = NULL;
 DRIVER *Driver[] = {
 #ifdef WITH_ASTUSB
     &drv_ASTUSB,
+#endif
+#ifdef WITH_BLUETOOTH
+    &drv_Bluetooth,
 #endif
 #ifdef WITH_BECKMANNEGLE
     &drv_BeckmannEgle,

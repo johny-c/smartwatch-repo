@@ -8,3 +8,7 @@ libusb-dev 2:0.1.12-20 Note: Version number is here important!!!
 
 For some Distros also:
 libjpeg8-dev
+
+For Bluetooth:
+libbluetooth-dev
+bluez-utils

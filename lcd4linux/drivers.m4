@@ -62,6 +62,7 @@ for driver in $drivers; do
       all)
          ASTUSB="yes"
          BECKMANNEGLE="yes"
+         BLUETOOTH="yes"
          BWCT="yes"
          CRYSTALFONTZ="yes"
          CURSES="yes"
@@ -122,6 +123,9 @@ for driver in $drivers; do
       BeckmannEgle)
          BECKMANNEGLE=$val
          ;;
+      Bluetooth)
+      	BLUETOOTH=$val
+      	;;
       BWCT)
          BWCT=$val
          ;;
@@ -325,6 +329,14 @@ if test "$BECKMANNEGLE" = "yes"; then
    SERIAL="yes"
    DRIVERS="$DRIVERS drv_BeckmannEgle.o"
    AC_DEFINE(WITH_BECKMANNEGLE,1,[Beckmann&Egle driver])
+fi
+
+if test "$BLUETOOTH" = "yes"; then
+   TEXT="yes"
+   GPIO="yes"
+   SERIAL="yes"
+   DRIVERS="$DRIVERS drv_Bluetooth.o"
+   AC_DEFINE(WITH_BLUETOOTH,1,[Bluetooth driver])
 fi
 
 if test "$BWCT" = "yes"; then

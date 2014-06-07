@@ -475,6 +475,9 @@
 /* Beckmann&Egle driver */
 #define WITH_BECKMANNEGLE 1
 
+/* Bluetooth driver */
+#define WITH_BLUETOOTH 1
+
 /* BWCT driver */
 #define WITH_BWCT 1
 

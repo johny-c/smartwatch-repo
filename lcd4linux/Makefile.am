@@ -18,7 +18,7 @@ ACLOCAL_AMFLAGS=-I m4
 # use this for lots of warnings
 #AM_CFLAGS = -D_GNU_SOURCE -std=c99 -m64 -Wall -W -pedantic -Wno-variadic-macros -fno-strict-aliasing
 
-lcd4linux_LDFLAGS ="-Wl,--as-needed"
+lcd4linux_LDFLAGS = -lbluetooth "-Wl,--as-needed"
 lcd4linux_LDADD   = @DRIVERS@ @PLUGINS@ @DRVLIBS@ @PLUGINLIBS@
 lcd4linux_DEPENDENCIES = @DRIVERS@ @PLUGINS@
 
@@ -73,6 +73,7 @@ drv_generic_keypad.c          \
 drv_generic_keypad.h          \
 drv_ASTUSB.c                  \
 drv_BeckmannEgle.c            \
+drv_Bluetooth.c               \
 drv_BWCT.c                    \
 drv_Crystalfontz.c            \
 drv_Curses.c                  \
@@ -164,6 +165,7 @@ plugin_qnaplog.c              \
 plugin_raspi.c                \
 plugin_sample.c               \
 plugin_seti.c                 \
+plugin_smartwatch.c           \
 plugin_statfs.c               \
 plugin_uname.c                \
 plugin_uptime.c               \
