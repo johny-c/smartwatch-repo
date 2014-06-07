@@ -62,14 +62,11 @@
 /* Define to 1 if you have the `gettimeofday' function. */
 #define HAVE_GETTIMEOFDAY 1
 
-/* Define if you have the iconv() function and it works. */
-#define HAVE_ICONV 1
-
 /* Define to 1 if you have the <inttypes.h> header file. */
 #define HAVE_INTTYPES_H 1
 
 /* Define to 1 if you have the <jpeglib.h> header file. */
-/* #undef HAVE_JPEGLIB_H */
+#define HAVE_JPEGLIB_H 1
 
 /* Define to 1 if you have the `m' library (-lm). */
 #define HAVE_LIBM 1
@@ -284,9 +281,6 @@
 /* Define to 1 if you have the <X11/Xutil.h> header file. */
 #define HAVE_X11_XUTIL_H 1
 
-/* Define as const if the declaration of iconv() needs const. */
-#define ICONV_CONST 
-
 /* Define to 1 if `lstat' dereferences a symlink specified with a trailing
    slash. */
 #define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
@@ -368,7 +362,7 @@
 #define PLUGIN_I2C_SENSORS 1
 
 /* iconv charset converter plugin */
-#define PLUGIN_ICONV 1
+/* #undef PLUGIN_ICONV */
 
 /* imon plugin */
 #define PLUGIN_IMON 1
@@ -611,7 +605,7 @@
 #define WITH_SAMPLE 1
 
 /* SamsungSPF driver */
-/* #undef WITH_SAMSUNGSPF */
+#define WITH_SAMSUNGSPF 1
 
 /* serdisplib driver */
 /* #undef WITH_SERDISPLIB */

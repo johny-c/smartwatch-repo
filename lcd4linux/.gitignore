@@ -20,6 +20,11 @@
 # Binaries
 lcd4linux
 
+# Temporary files
+*~
+~*
+
 # Output folders
 .deps
 .libs
+*.cache

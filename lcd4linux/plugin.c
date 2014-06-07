@@ -150,6 +150,9 @@ char *Plugins[] = {
 #ifdef PLUGIN_SETI
     "seti",
 #endif
+#ifdef PLUGIN_SMARTWATCH
+    "smartwatch",
+#endif
 #ifdef PLUGIN_STATFS
     "statfs",
 #endif
@@ -250,6 +253,8 @@ int plugin_init_sample(void);
 void plugin_exit_sample(void);
 int plugin_init_seti(void);
 void plugin_exit_seti(void);
+int plugin_init_smartwatch(void);
+void plugin_exit_smartwatch(void);
 int plugin_init_statfs(void);
 void plugin_exit_statfs(void);
 int plugin_init_uname(void);
@@ -387,6 +392,9 @@ int plugin_init(void)
 #ifdef PLUGIN_SETI
     plugin_init_seti();
 #endif
+#ifdef PLUGIN_SMARTWATCH
+    plugin_init_smartwatch();
+#endif
 #ifdef PLUGIN_STATFS
     plugin_init_statfs();
 #endif
@@ -507,6 +515,9 @@ void plugin_exit(void)
 #endif
 #ifdef PLUGIN_SETI
     plugin_exit_seti();
+#endif
+#ifdef PLUGIN_SMARTWATCH
+    plugin_exit_smartwatch();
 #endif
 #ifdef PLUGIN_STATFS
     plugin_exit_statfs();

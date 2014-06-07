@@ -1,16 +1,24 @@
 This file describe how to make the executable for lcd4linux:
 
-1) Open the File DEPENDENCIES and check if all the packages are installed
+1) open the File DEPENDENCIES and check if all the packages are installed
 
-2) Using the existing makefile run "make distclean"
+2) using the existing makefile run "make distclean"
 
-3) Enter su-Mode
+3) run as superuser
 
-4) Run "./configure"
+4) ./configure
 
-5) Run automake
+5) automake
 
-6) run make
+6) autoconf
+
+7) make
+
+8) make install
+
+9) cp ./lcd4linux.conf /etc/lcd4linux.conf
+
+10) lcd4linux -F [-o <ppm file>]
 
 Ready ;)
 
