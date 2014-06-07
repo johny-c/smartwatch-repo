@@ -1,0 +1,55 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="org.praktikum.linuxandc.MainActivity$PlaceholderFragment" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hello_world" />
+
+    <Button
+        android:id="@+id/listBTDevicesButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/startBTServerButton"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:onClick="listBTDevices"
+        android:text="@string/listBTDevicesButton" />
+
+    <ListView
+        android:id="@+id/devicesLV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/listBTDevicesButton"
+        android:layout_below="@+id/listBTDevicesButton" >
+    </ListView>
+
+    <Button
+        android:id="@+id/startBTServerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/listBTDevicesButton"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_marginBottom="30dp"
+        android:onClick="startBTServer"
+        android:text="@string/startButton" />
+
+    <TextView
+        android:id="@+id/statusTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/startBTServerButton"
+        android:layout_alignLeft="@+id/startBTServerButton"
+        android:layout_marginBottom="24dp"
+        android:text="@string/statusLabel"
+        android:textSize="18sp" />
+
+</RelativeLayout>
