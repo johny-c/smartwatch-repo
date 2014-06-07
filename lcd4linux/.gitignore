@@ -24,7 +24,18 @@ lcd4linux
 *~
 ~*
 
+# Auto generated filesrm configure
+configure
+Makefile
+Makefile.in
+config.h.in
+config.status
+aclocal.m4
+
+# Zip files
+*.zip
+
 # Output folders
-.deps
+.bin
 .libs
 *.cache
