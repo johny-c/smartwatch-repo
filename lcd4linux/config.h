@@ -14,7 +14,7 @@
 /* #undef DBUS_VERSION_MINOR */
 
 /* Found some version of curses that we're going to use */
-/* #undef HAS_CURSES */
+#define HAS_CURSES 1
 
 /* Define to 1 if you have the <arpa/inet.h> header file. */
 #define HAVE_ARPA_INET_H 1
@@ -61,6 +61,9 @@
 
 /* Define to 1 if you have the `gettimeofday' function. */
 #define HAVE_GETTIMEOFDAY 1
+
+/* Define if you have the iconv() function and it works. */
+#define HAVE_ICONV 1
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #define HAVE_INTTYPES_H 1
@@ -281,6 +284,9 @@
 /* Define to 1 if you have the <X11/Xutil.h> header file. */
 #define HAVE_X11_XUTIL_H 1
 
+/* Define as const if the declaration of iconv() needs const. */
+#define ICONV_CONST 
+
 /* Define to 1 if `lstat' dereferences a symlink specified with a trailing
    slash. */
 #define LSTAT_FOLLOWS_SLASHED_SYMLINK 1
@@ -362,7 +368,7 @@
 #define PLUGIN_I2C_SENSORS 1
 
 /* iconv charset converter plugin */
-/* #undef PLUGIN_ICONV */
+#define PLUGIN_ICONV 1
 
 /* imon plugin */
 #define PLUGIN_IMON 1
@@ -458,7 +464,7 @@
 #define TIME_WITH_SYS_TIME 1
 
 /* Use Ncurses? */
-/* #undef USE_NCURSES */
+#define USE_NCURSES 1
 
 /* Use SunOS SysV curses? */
 /* #undef USE_SUNOS_CURSES */
@@ -485,7 +491,7 @@
 #define WITH_CRYSTALFONTZ 1
 
 /* Curses driver */
-/* #undef WITH_CURSES */
+#define WITH_CURSES 1
 
 /* CwLinux driver */
 #define WITH_CWLINUX 1
