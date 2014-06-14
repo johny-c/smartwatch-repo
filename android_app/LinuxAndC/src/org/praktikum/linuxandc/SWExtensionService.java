@@ -32,7 +32,6 @@
 package org.praktikum.linuxandc;
 
 import com.sonyericsson.extras.liveware.aef.control.Control;
-import com.sonyericsson.extras.liveware.aef.registration.Registration;
 import com.sonyericsson.extras.liveware.extension.util.ExtensionService;
 import com.sonyericsson.extras.liveware.extension.util.control.ControlExtension;
 import com.sonyericsson.extras.liveware.extension.util.registration.DeviceInfo;
@@ -68,6 +67,20 @@ public class SWExtensionService extends ExtensionService {
 		super.onCreate();
 		Log.d(SWExtensionService.LOG_TAG, "SWExtensionService: onCreate");
 	}
+	
+	
+	
+	/*
+	 * 
+	 * The service will be started again when a Smart Accessory is
+	 * re-connected. Since the service may have been shut down for 
+	 * a while, it is important to check its sources to see if it 
+	 * has missed any events that should be replicated to the 
+	 * notification content provider.
+	 * 
+	 * (non-Javadoc)
+	 * @see com.sonyericsson.extras.liveware.extension.util.ExtensionService#onStartCommand(android.content.Intent, int, int)
+	 */
 
 	@Override
 	public int onStartCommand(Intent intent, int flags, int startId) {
@@ -79,7 +92,9 @@ public class SWExtensionService extends ExtensionService {
 			// Handling of extension specific intents goes here
 			//String aha = intent.getStringExtra(Registration.Intents.EXTRA_AHA_PACKAGE_NAME);
 			//Log.i("TAG", "HostAppPackageName: " + aha);
-			
+			if(intent.getAction().equals(Control.Intents.CONTROL_STOP_INTENT)){
+				
+			}
 		}
 		return retVal;
 	}

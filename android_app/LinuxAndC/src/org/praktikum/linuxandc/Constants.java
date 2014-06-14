@@ -8,6 +8,8 @@ public interface Constants {
 	public static final int MESSAGE_DEVICE_NAME = 4;
 	public static final int MESSAGE_TOAST = 5;	
 	public static final int IMAGE_UPDATE = 6;
+	public static final int DEVICE_UPDATE = 7;
+	public static final int SERVER_STOPPED = 8;
 	//public static final int SW_CONNECTED = 7;
 	//public static final int SW_DISCONNECTED = 8;
 	
@@ -18,5 +20,5 @@ public interface Constants {
 	
     public static final String BYTE_ARRAY_KEY = "byteArray";
     
-    public static final int IMG_BUFFER_SIZE = 128*128*3;
+    public static final int IMG_BUFFER_SIZE = 128*128*4; // WIDTH * HEIGHT * RGBA
 }

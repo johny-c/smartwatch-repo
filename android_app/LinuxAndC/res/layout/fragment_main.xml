@@ -8,47 +8,54 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="org.praktikum.linuxandc.MainActivity$PlaceholderFragment" >
 
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
-
-    <Button
-        android:id="@+id/listBTDevicesButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/startBTServerButton"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="20dp"
-        android:onClick="listBTDevices"
-        android:text="@string/listBTDevicesButton" />
-
     <ListView
-        android:id="@+id/devicesLV"
+        android:id="@+id/pairedDevicesLV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/listBTDevicesButton"
-        android:layout_below="@+id/listBTDevicesButton" >
+        android:layout_alignLeft="@+id/mockServerButton"
+        android:layout_below="@+id/pairedDevicesTV" >
     </ListView>
 
-    <Button
-        android:id="@+id/startBTServerButton"
+    <ToggleButton
+        android:id="@+id/mockServerButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/listBTDevicesButton"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_marginBottom="30dp"
-        android:onClick="startBTServer"
-        android:text="@string/startButton" />
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/statusTV"
+        android:checked="false"
+        android:onClick="toggleMockServer"
+        android:text="@string/mockModeText"
+        android:textOff="START MOCK SERVER"
+        android:textOn="STOP MOCK SERVER"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/pairedDevicesTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/mockServerButton"
+        android:layout_alignRight="@+id/realServerButton"
+        android:layout_below="@+id/realServerButton"
+        android:text="@string/pairedDevicesTV" />
+
+    <ToggleButton
+        android:id="@+id/realServerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/statusTV"
+        android:layout_toRightOf="@+id/mockServerButton"
+        android:checked="false"
+        android:onClick="toggleRealServer"
+        android:text="@string/startButton"
+        android:textOff="START REAL SERVER"
+        android:textOn="STOP REAL SERVER"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/statusTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/startBTServerButton"
-        android:layout_alignLeft="@+id/startBTServerButton"
-        android:layout_marginBottom="24dp"
+        android:layout_alignLeft="@+id/mockServerButton"
         android:text="@string/statusLabel"
         android:textSize="18sp" />
 

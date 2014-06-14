@@ -26,5 +26,7 @@
     <string name="Devices"></string>
     <string name="listBTDevicesButton">List paired devices</string>
     <string name="title_activity_btdevices">BTDevicesActivity</string>
+    <string name="mockModeText">Mock Mode</string>
+    <string name="pairedDevicesTV"></string>
 
 </resources>

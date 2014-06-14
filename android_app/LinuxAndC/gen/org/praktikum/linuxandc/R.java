@@ -1277,7 +1277,6 @@ containing a value of this type.
         public static final int days_of_year_digit2=0x7f060032;
         public static final int days_of_year_digit3=0x7f060031;
         public static final int default_activity_button=0x7f06004b;
-        public static final int devicesLV=0x7f060063;
         public static final int dialog=0x7f06000e;
         public static final int disableHome=0x7f060008;
         public static final int dropdown=0x7f06000f;
@@ -1295,7 +1294,6 @@ containing a value of this type.
         public static final int ifRoom=0x7f06000a;
         public static final int image=0x7f06004a;
         public static final int left=0x7f06001c;
-        public static final int listBTDevicesButton=0x7f060061;
         public static final int listMode=0x7f060001;
         public static final int list_item=0x7f06004c;
         public static final int match_parent=0x7f060021;
@@ -1303,15 +1301,19 @@ containing a value of this type.
         public static final int minutes=0x7f060026;
         public static final int minutes_digit1=0x7f060028;
         public static final int minutes_digit2=0x7f060027;
+        public static final int mockServerButton=0x7f060061;
         public static final int months=0x7f060034;
         public static final int months_digit1=0x7f060036;
         public static final int months_digit2=0x7f060035;
         public static final int never=0x7f060009;
         public static final int none=0x7f060010;
         public static final int normal=0x7f060000;
+        public static final int pairedDevicesLV=0x7f060060;
+        public static final int pairedDevicesTV=0x7f060062;
         public static final int progress_circular=0x7f060018;
         public static final int progress_horizontal=0x7f060019;
         public static final int radio=0x7f060052;
+        public static final int realServerButton=0x7f060064;
         public static final int right=0x7f06001d;
         public static final int sample_control_text=0x7f060065;
         public static final int search_badge=0x7f060055;
@@ -1342,11 +1344,9 @@ containing a value of this type.
         public static final int smart_watch_widget_event_counter_text=0x7f06006f;
         public static final int smart_watch_widget_icon=0x7f06006d;
         public static final int split_action_bar=0x7f060041;
-        public static final int startBTServerButton=0x7f060062;
-        public static final int statusTV=0x7f060064;
+        public static final int statusTV=0x7f060063;
         public static final int submit_area=0x7f06005c;
         public static final int tabMode=0x7f060002;
-        public static final int textView1=0x7f060060;
         public static final int title=0x7f06004e;
         public static final int top=0x7f06001a;
         public static final int top_action_bar=0x7f060043;
@@ -1479,6 +1479,8 @@ containing a value of this type.
         public static final int extension_name=0x7f0b0013;
         public static final int hello_world=0x7f0b000e;
         public static final int listBTDevicesButton=0x7f0b001c;
+        public static final int mockModeText=0x7f0b001e;
+        public static final int pairedDevicesTV=0x7f0b001f;
         /**  Title of preference activity 
          */
         public static final int preference_activity_title=0x7f0b0012;

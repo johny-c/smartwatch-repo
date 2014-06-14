@@ -326,7 +326,6 @@ int id days_of_year_digit1 0x7f060033
 int id days_of_year_digit2 0x7f060032
 int id days_of_year_digit3 0x7f060031
 int id default_activity_button 0x7f06004b
-int id devicesLV 0x7f060063
 int id dialog 0x7f06000e
 int id disableHome 0x7f060008
 int id dropdown 0x7f06000f
@@ -344,7 +343,6 @@ int id icon 0x7f06004d
 int id ifRoom 0x7f06000a
 int id image 0x7f06004a
 int id left 0x7f06001c
-int id listBTDevicesButton 0x7f060061
 int id listMode 0x7f060001
 int id list_item 0x7f06004c
 int id match_parent 0x7f060021
@@ -352,15 +350,19 @@ int id middle 0x7f060012
 int id minutes 0x7f060026
 int id minutes_digit1 0x7f060028
 int id minutes_digit2 0x7f060027
+int id mockServerButton 0x7f060061
 int id months 0x7f060034
 int id months_digit1 0x7f060036
 int id months_digit2 0x7f060035
 int id never 0x7f060009
 int id none 0x7f060010
 int id normal 0x7f060000
+int id pairedDevicesLV 0x7f060060
+int id pairedDevicesTV 0x7f060062
 int id progress_circular 0x7f060018
 int id progress_horizontal 0x7f060019
 int id radio 0x7f060052
+int id realServerButton 0x7f060064
 int id right 0x7f06001d
 int id sample_control_text 0x7f060065
 int id search_badge 0x7f060055
@@ -391,11 +393,9 @@ int id smart_watch_widget_event_counter_badge 0x7f06006e
 int id smart_watch_widget_event_counter_text 0x7f06006f
 int id smart_watch_widget_icon 0x7f06006d
 int id split_action_bar 0x7f060041
-int id startBTServerButton 0x7f060062
-int id statusTV 0x7f060064
+int id statusTV 0x7f060063
 int id submit_area 0x7f06005c
 int id tabMode 0x7f060002
-int id textView1 0x7f060060
 int id title 0x7f06004e
 int id top 0x7f06001a
 int id top_action_bar 0x7f060043
@@ -462,6 +462,8 @@ int string configuration_text 0x7f0b0014
 int string extension_name 0x7f0b0013
 int string hello_world 0x7f0b000e
 int string listBTDevicesButton 0x7f0b001c
+int string mockModeText 0x7f0b001e
+int string pairedDevicesTV 0x7f0b001f
 int string preference_activity_title 0x7f0b0012
 int string preference_option_read_me 0x7f0b0015
 int string preference_option_read_me_txt 0x7f0b0016

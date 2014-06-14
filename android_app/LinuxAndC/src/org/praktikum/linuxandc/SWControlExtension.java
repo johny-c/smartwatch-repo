@@ -32,25 +32,17 @@
 package org.praktikum.linuxandc;
 
 
-import com.sonyericsson.extras.liveware.aef.control.Control;
-import com.sonyericsson.extras.liveware.extension.util.control.ControlExtension;
-import com.sonyericsson.extras.liveware.extension.util.control.ControlTouchEvent;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.os.Handler;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.ViewGroup.LayoutParams;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+
+import com.sonyericsson.extras.liveware.aef.control.Control;
+import com.sonyericsson.extras.liveware.extension.util.control.ControlExtension;
+import com.sonyericsson.extras.liveware.extension.util.control.ControlTouchEvent;
 
 /**
  * The sample control for SmartWatch handles the control on the accessory.
