@@ -184,7 +184,7 @@ static uint8_t drv_BT_find_SDP(void) {
 
 
 
-
+// Initialize Socket Connection
 static int drv_BT_socket_init(uint8_t port) {
 	//struct sockaddr_l2 addr = { 0 };
 	struct sockaddr_rc addr = { 0 };
