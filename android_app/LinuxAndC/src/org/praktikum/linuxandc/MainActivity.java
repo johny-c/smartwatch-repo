@@ -2,12 +2,10 @@ package org.praktikum.linuxandc;
 
 import java.util.ArrayList;
 import java.util.Set;
-import java.util.concurrent.ExecutionException;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
-import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -34,9 +32,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
 	private static final boolean D = true;
 	private static BluetoothAdapter mBluetoothAdapter;
 	private MockServer mockServer;
-	private ConnectionListener connectionListener;
-	private BluetoothSocket btSocket;
-	private DataShifter dataShifter;
+	private BluetoothServer bluetoothServer;
 	
 	private static TextView statusTV, pairedDevicesTV;
 	private static ToggleButton realServerButton, mockServerButton;
@@ -62,6 +58,15 @@ public class MainActivity extends ActionBarActivity implements Constants {
 					statusTV.setText(msg.obj + " is now connected!");
 					break;
 					
+					
+				case DATA_UPDATE:
+					if (D){
+						Log.i(TAG, "RECEIVED NEW DATA FROM PC, size = " + msg.arg1 + " bytes" + ", frame = "+msg.arg2);
+						Log.d("DATAAA", msg.obj.toString());
+					}
+					statusTV.setText("NEW DATA ON FRAME ("+msg.arg2+") RECEIVED FROM LINUX COMPUTER!");					
+					break;				
+					
 				case IMAGE_UPDATE:
 					if (D)
 						Log.i(TAG, "RECEIVED NEW IMAGE FROM PC, size = " + msg.arg1 + " bytes");
@@ -72,7 +77,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
 					if(D){
 						Log.i(TAG, "SERVER STOPPED");
 					}
-					statusTV.setText("Server is now stopped!");					
+					statusTV.setText("Server is now stopped!");	
+					break;
 			}
 		}
 	};
@@ -210,8 +216,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
 				realServerButton.setEnabled(true);
 				return;
 			}
-			mockServerButton.setEnabled(false);
-			
+			mockServerButton.setEnabled(false);	
 			startRealServer();
 			realServerButton.setChecked(true);
 		}
@@ -222,39 +227,19 @@ public class MainActivity extends ActionBarActivity implements Constants {
 		}
 		
 		realServerButton.setEnabled(true);
-		
 	}
 	
 	
 	private void startRealServer(){
-			
-		connectionListener = new ConnectionListener(mHandler, this);
-		connectionListener.execute();
+		bluetoothServer = new BluetoothServer(mHandler, this);
+		new Thread(bluetoothServer).start();
 		statusTV.setText("Now listening for BT connections...");
-		
-		/*
-		try {
-			dataShifter = connectionListener.get();
-		} catch (InterruptedException e) {			
-			Log.e(TAG, e.toString());
-			statusTV.setText("Real Server was stopped..!");
-		} catch (ExecutionException e) {
-			Log.e(TAG, e.toString());
-			statusTV.setText("Connection Listener was stopped..!");
-		}
-		*/
 	}
 	
 	
 	private void stopRealServer(){
-		if(connectionListener != null){
-			connectionListener.cancel(true);
-			//while(connectionListener.getStatus() != AsyncTask.Status.FINISHED);
-		}
-		
-		if(dataShifter != null){
-			dataShifter.cancel();
-			//while(dataShifter.getStatus() != AsyncTask.Status.FINISHED);
+		if(bluetoothServer != null){
+			bluetoothServer.cancel();
 		}
 	}
 	 

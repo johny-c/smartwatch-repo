@@ -76,6 +76,7 @@ static int border = 0; /* window border */
 static int dimx, dimy; /* total window dimension in pixel */
 
 static RGBA BC;
+static RGBA RANDOM_COLOR;
 static RGBA *drv_BT_FB = NULL;
 
 static int dirty = 1;
@@ -155,7 +156,7 @@ static uint8_t drv_BT_find_SDP(void) {
 								break;
 							case SDP_UINT8:
 								if( proto == RFCOMM_UUID ) {
-									printf("rfcomm channel: %d\n",d->val.int8);
+									printf("Found SDP on rfcomm channel: %d\n",d->val.int8);
 								}
 								break;
 						}
@@ -258,6 +259,9 @@ static int drv_BT_socket_quit(void) {
 /***  hardware dependant functions    ***/
 /****************************************/
 
+
+int frameCounter = 0;
+
 static void drv_BT_flush(void) {
 	static RGBA *bitbuf = NULL;
 	int xsize, ysize, row, col, i;
@@ -298,9 +302,14 @@ static void drv_BT_flush(void) {
 		}
 	}
 
-	//printf("BC = (%d %d %d) , A = %d", BC.R, BC.G, BC.B, BC.A);
+
+	RANDOM_COLOR.R = rand() % 256;
+	RANDOM_COLOR.G = rand() % 256;
+	RANDOM_COLOR.B = rand() % 256;
+	RANDOM_COLOR.A = 255;
+	printf("RANDOM_COLOR = (%d %d %d) , A = %d", RANDOM_COLOR.R, RANDOM_COLOR.G, RANDOM_COLOR.B, RANDOM_COLOR.A);
 	for (i = 0; i < xsize * ysize; i++) {
-		bitbuf[i] = BC;
+		bitbuf[i] = RANDOM_COLOR; //BC;
 	}
 
 	/*

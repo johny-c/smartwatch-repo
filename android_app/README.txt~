@@ -47,11 +47,7 @@ which implements a Bluetooth communication,
 that receives data (images) from the Linux PC and 
 sends them to the SmartExtension
 	
-4. Constants.java, 
+3. Constants.java, 
 which contains some constants to be used for 
 communication between the different app components
-
-5. MockServer.java, 
-sends images from the phone to the watch
-(used for testing purposes)
 
