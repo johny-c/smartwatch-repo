@@ -1,6 +1,7 @@
 # Object files
 *.o
 *.ko
+*.po
 
 # Libraries
 *.lib
@@ -38,4 +39,5 @@ aclocal.m4
 # Output folders
 .bin
 .libs
+.deps
 *.cache
