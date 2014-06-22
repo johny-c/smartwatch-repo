@@ -1,7 +1,7 @@
 /* $Id: drv_Image.c 840 2007-09-09 12:17:42Z michael $
  * $URL: https://ssl.bulix.org/svn/lcd4linux/trunk/drv_Image.c $
  *
- * new style Image (PPM/PNG) Driver for LCD4Linux 
+ * Bluetooth Driver for LCD4Linux 
  *
  * Copyright (C) 2003 Michael Reinelt <michael@reinelt.co.at>
  * Copyright (C) 2004 The LCD4Linux Team <lcd4linux-devel@users.sourceforge.net>
@@ -65,7 +65,7 @@
 #endif
 
 static char Name[] = "Bluetooth";
-const static char SMARTPHONE_BT_MAC[] = "D0:C1:B1:1D:63:0F";
+static char SMARTPHONE_BT_MAC[] = "D0:C1:B1:1D:63:0F";
 
 static int pixel = -1; /* pointsize in pixel */
 static int pgap = 0; /* gap between points */
@@ -94,43 +94,43 @@ static uint8_t drv_BT_find_SDP(void) {
 
 	//char SECURE_UUID[] = "d2e19fab-f367-43d9-9cc2-b6837e7eb915";
 	//uint32_t svc_uuid_int[] = { 0 , 0 , 0 , 0xABCD } ;
-    uint8_t svc_uuid_int[] = { 0xd2, 0xe1, 0x9f, 0xab,
+    	uint8_t svc_uuid_int[] = { 0xd2, 0xe1, 0x9f, 0xab,
     						   0xf3, 0x67, 0x43, 0xd9,
     						   0x9c, 0xc2, 0xb6, 0x83,
     						   0x7e, 0x7e, 0xb9, 0x15 };
-    uuid_t svc_uuid;
-    int err;
-    bdaddr_t target;
-    sdp_list_t *response_list = NULL, *search_list, *attrid_list;
-    sdp_session_t *session = 0;
-    uint8_t port = 0;
+    	uuid_t svc_uuid;
+    	int err;
+    	bdaddr_t target;
+    	sdp_list_t *response_list = NULL, *search_list, *attrid_list;
+    	sdp_session_t *session = 0;
+    	uint8_t port = 0;
 
-    str2ba( SMARTPHONE_BT_MAC, &target );
+    	str2ba( SMARTPHONE_BT_MAC, &target );
 
-    // connect to the SDP server running on the remote machine
-    session = sdp_connect( BDADDR_ANY, &target, SDP_RETRY_IF_BUSY );
+    	// connect to the SDP server running on the remote machine
+    	session = sdp_connect( BDADDR_ANY, &target, SDP_RETRY_IF_BUSY );
 
-    // specify the UUID of the application we're searching for
-    sdp_uuid128_create( &svc_uuid, &svc_uuid_int );
-    search_list = sdp_list_append( NULL, &svc_uuid );
+    	// specify the UUID of the application we're searching for
+    	sdp_uuid128_create( &svc_uuid, &svc_uuid_int );
+    	search_list = sdp_list_append( NULL, &svc_uuid );
 
-    // specify that we want a list of all the matching applications' attributes
-    uint32_t range = 0x0000ffff;
-    attrid_list = sdp_list_append( NULL, &range );
+    	// specify that we want a list of all the matching applications' attributes
+    	uint32_t range = 0x0000ffff;
+    	attrid_list = sdp_list_append( NULL, &range );
 
-    // get a list of service records that have our UUID
-    err = sdp_service_search_attr_req( session, search_list,
+    	// get a list of service records that have our UUID
+    	err = sdp_service_search_attr_req( session, search_list,
     		SDP_ATTR_REQ_RANGE, attrid_list, &response_list);
 
-    sdp_list_t *r = response_list;
+    	sdp_list_t *r = response_list;
 
-    // go through each of the service records
-    for (; r; r = r->next ) {
-        sdp_record_t *rec = (sdp_record_t*) r->data;
-        sdp_list_t *proto_list;
+    	// go through each of the service records
+    	for (; r; r = r->next ) {
+        	sdp_record_t *rec = (sdp_record_t*) r->data;
+        	sdp_list_t *proto_list;
 
-        // get a list of the protocol sequences
-        if( sdp_get_access_protos( rec, &proto_list ) == 0 ) {
+        	// get a list of the protocol sequences
+        	if( sdp_get_access_protos( rec, &proto_list ) == 0 ) {
 
 			// get the RFCOMM port number
 			port = sdp_get_proto_port( proto_list , RFCOMM_UUID ) ;
@@ -166,45 +166,36 @@ static uint8_t drv_BT_find_SDP(void) {
 			}
 			sdp_list_free( proto_list, 0 );
 
-        }
+        	}
 
-        printf("found service record 0x%x\n", rec->handle);
-        sdp_record_free( rec );
-    }
+        	printf("found service record 0x%x\n", rec->handle);
+        	sdp_record_free( rec );
+    	}
 
 	sdp_list_free( response_list, 0 );
 	sdp_list_free( search_list, 0 );
 	sdp_list_free( attrid_list, 0 );
-    sdp_close(session);
+   	sdp_close(session);
 
 	if( port != 0 ){
 		printf( "Found service running on RFCOMM port %d\n\n" , port ) ;
 	}
-    return port;
+    	return port;
 }
 
 
 
 // Initialize Socket Connection
 static int drv_BT_socket_init(uint8_t port) {
-	//struct sockaddr_l2 addr = { 0 };
 	struct sockaddr_rc addr = { 0 };
-	//char dest[18] = "....";
 
 	/* allocate socket */
-	//btSocket = socket(AF_BLUETOOTH, SOCK_SEQPACKET, BTPROTO_L2CAP);
 	btSocket = socket(AF_BLUETOOTH, SOCK_STREAM, BTPROTO_RFCOMM);
 
-	/* bind socket to port 0x1001 of the first available */
-	/* bluetooth adapter */
-	//addr.l2_family = AF_BLUETOOTH;
-	//addr.l2_bdaddr = *BDADDR_ANY;
-	//addr.l2_psm = htobs(0x1001);
-	//str2ba( dest, &addr.l2_bdaddr );
+	/* bind socket to port 0x1001 of the first available bluetooth adapter */
 	addr.rc_family = AF_BLUETOOTH;
-    addr.rc_channel = (uint8_t) port; // was 1, 0 is supposed to find the first available port
-    str2ba( SMARTPHONE_BT_MAC, &addr.rc_bdaddr );
-    //str2ba( output, &addr.rc_bdaddr );
+    	addr.rc_channel = (uint8_t) port; // was 1, 0 is supposed to find the first available port
+    	str2ba( SMARTPHONE_BT_MAC, &addr.rc_bdaddr );
 
 	// connect to server
 	if (connect(btSocket, (struct sockaddr *)&addr, sizeof(addr)) < 0) {
@@ -266,31 +257,6 @@ static void drv_BT_flush(void) {
 	static RGBA *bitbuf = NULL;
 	int xsize, ysize, row, col, i;
 
-	//border = 20;
-	//DCOLS = DROWS = 128;
-	//XRES = 6;
-	//YRES = 8;
-	//cgap = 5;
-	//rgap = 5;
-	//pixel = 4;
-	//pgap = 1;
-	//xsize = 2 * 20 + (128/6 - 1)*5 + 128*4 + 127*1;
-	//ysize = 2 * 20 + (128/8 - 1)*5 + 128*4 + 127*1;
-	/*
-	xsize = 2 * border + (DCOLS / XRES - 1) * cgap + DCOLS * pixel
-			+ (DCOLS - 1) * pgap;
-	ysize = 2 * border + (DROWS / YRES - 1) * rgap + DROWS * pixel
-			+ (DROWS - 1) * pgap;
-
-
-	printf("Border = %d\n", border);
-	printf("DCOLS = %d, DROWS = %d\n", DCOLS, DROWS);
-	printf("XRES = %d, YRES = %d\n", XRES, YRES);
-	printf("cgap = %d, rgap = %d\n", cgap, rgap);
-	printf("pixel = %d, pgap = %d\n", pixel, pgap);
-	printf("xsize = %d,  ysize = %d\n\n", xsize, ysize);
-	*/
-
 	xsize = 128;
 	ysize = 128;
 	//printf("xsize = %d,  ysize = %d\n\n", xsize, ysize);
@@ -302,40 +268,16 @@ static void drv_BT_flush(void) {
 		}
 	}
 
-
 	RANDOM_COLOR.R = rand() % 256;
 	RANDOM_COLOR.G = rand() % 256;
 	RANDOM_COLOR.B = rand() % 256;
 	RANDOM_COLOR.A = 255;
+	
 	printf("RANDOM_COLOR = (%d %d %d) , A = %d", RANDOM_COLOR.R, RANDOM_COLOR.G, RANDOM_COLOR.B, RANDOM_COLOR.A);
 	for (i = 0; i < xsize * ysize; i++) {
 		bitbuf[i] = RANDOM_COLOR; //BC;
 	}
 
-	/*
-	for (row = 0; row < DROWS; row++) {
-		int y = border + (row / YRES) * rgap + row * (pixel + pgap);
-		for (col = 0; col < DCOLS; col++) {
-			int x = border + (col / XRES) * cgap + col * (pixel + pgap);
-			int a, b;
-			for (a = 0; a < pixel; a++)
-				for (b = 0; b < pixel; b++)
-					bitbuf[y * xsize + x + a * xsize + b] = drv_BT_FB[row
-							* DCOLS + col];
-		}
-	}
-	*/
-
-	/*
-	for (row = 0; row < DROWS; row++) {
-		for (col = 0; col < DCOLS; col++) {
-			bitbuf[row][col] = drv_BT_FB[row][col];
-		}
-	}
-	*/
-
-	//printf("Len of buffer: %d\n", xsize * ysize * sizeof(RGBA)); // = 779 * 754 * 4
-	//printf("Size of buffer: %d\n", sizeof(bitbuf)); // = 8
 	if (drv_BT_socket_push(bitbuf, xsize * ysize * sizeof(RGBA)) < 0) {
 		error("Incomplete bluetooth push");
 		return;
@@ -375,16 +317,11 @@ static int drv_BT_start(const char *section) {
 	if (output == NULL || *output == '\0') {
 		/* read bluetooth device from config */
 		output = cfg_get(section, "Device", "00:00:00:00:00:00");
-		printf("Bluetooth address: %s , length: %d.\n", output, strlen(output));
+		memcpy(SMARTPHONE_BT_MAC, output, 16);
 		if (strlen(output) != 17) { /* Probably only 17 when \0 don't count */
-			error("%s: bad %s.Device '%s' from '%s'", Name, section, s, cfg_source());
+			error("%s: bad %s.Device '%s' from '%s' or no device specified by the -o switch", Name, section, s, cfg_source());
 		}
-	}
-
-	if (output == NULL || *output == '\0') {
-		error("%s: no bluetooth device specified (use -o switch)", Name);
-		return -1;
-	}
+	}	
 
 	/* read display size from config */
 	if (sscanf(s = cfg_get(section, "Size", "128x128"), "%dx%d", &DCOLS, &DROWS)
@@ -449,7 +386,6 @@ static int drv_BT_start(const char *section) {
 
 	dimx = DCOLS * pixel + (DCOLS - 1) * pgap + (DCOLS / XRES - 1) * cgap;
 	dimy = DROWS * pixel + (DROWS - 1) * pgap + (DROWS / YRES - 1) * rgap;
-
 
 	/* Find smartphone and the port that is open */
 	uint8_t port = drv_BT_find_SDP();
