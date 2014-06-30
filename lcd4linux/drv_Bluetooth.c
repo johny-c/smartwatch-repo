@@ -76,7 +76,6 @@ static int border = 0; /* window border */
 static int dimx, dimy; /* total window dimension in pixel */
 
 static RGBA BC;
-static RGBA RANDOM_COLOR;
 static RGBA *drv_BT_FB = NULL;
 
 static int dirty = 1;
@@ -183,8 +182,6 @@ static uint8_t drv_BT_find_SDP(void) {
     	return port;
 }
 
-
-
 // Initialize Socket Connection
 static int drv_BT_socket_init(uint8_t port) {
 	struct sockaddr_rc addr = { 0 };
@@ -250,16 +247,14 @@ static int drv_BT_socket_quit(void) {
 /***  hardware dependant functions    ***/
 /****************************************/
 
-
 int frameCounter = 0;
 
 static void drv_BT_flush(void) {
 	static RGBA *bitbuf = NULL;
 	int xsize, ysize, row, col, i;
 
-	xsize = 128;
-	ysize = 128;
-	//printf("xsize = %d,  ysize = %d\n\n", xsize, ysize);
+	xsize = 2 * border + (DCOLS / XRES - 1) * cgap + DCOLS * pixel + (DCOLS - 1) * pgap;
+	ysize = 2 * border + (DROWS / YRES - 1) * rgap + DROWS * pixel + (DROWS - 1) * pgap;
 
 	if (bitbuf == NULL) {
 		if ((bitbuf = malloc(xsize * ysize * sizeof(RGBA))) == NULL) {
@@ -267,16 +262,21 @@ static void drv_BT_flush(void) {
 			return;
 		}
 	}
-
-	RANDOM_COLOR.R = rand() % 256;
-	RANDOM_COLOR.G = rand() % 256;
-	RANDOM_COLOR.B = rand() % 256;
-	RANDOM_COLOR.A = 255;
 	
-	printf("RANDOM_COLOR = (%d %d %d) , A = %d", RANDOM_COLOR.R, RANDOM_COLOR.G, RANDOM_COLOR.B, RANDOM_COLOR.A);
 	for (i = 0; i < xsize * ysize; i++) {
-		bitbuf[i] = RANDOM_COLOR; //BC;
+		bitbuf[i] = BC;
 	}
+	
+	for (row = 0; row < DROWS; row++) {
+		int y = border + (row / YRES) * rgap + row * (pixel + pgap);
+		for (col = 0; col < DCOLS; col++) {
+			int x = border + (col / XRES) * cgap + col * (pixel + pgap);
+			int a, b;
+			for (a = 0; a < pixel; a++)
+				for (b = 0; b < pixel; b++)
+					bitbuf[y * xsize + x + a * xsize + b] = drv_IMG_FB[row * DCOLS + col];
+	}
+    }
 
 	if (drv_BT_socket_push(bitbuf, xsize * ysize * sizeof(RGBA)) < 0) {
 		error("Incomplete bluetooth push");
