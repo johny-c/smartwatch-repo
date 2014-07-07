@@ -12,28 +12,13 @@
         android:id="@+id/pairedDevicesLV"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/mockServerButton"
         android:layout_below="@+id/pairedDevicesTV" >
     </ListView>
-
-    <ToggleButton
-        android:id="@+id/mockServerButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/statusTV"
-        android:checked="false"
-        android:onClick="toggleMockServer"
-        android:text="@string/mockModeText"
-        android:textOff="START MOCK SERVER"
-        android:textOn="STOP MOCK SERVER"
-        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/pairedDevicesTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/mockServerButton"
         android:layout_alignRight="@+id/realServerButton"
         android:layout_below="@+id/realServerButton"
         android:text="@string/pairedDevicesTV" />
@@ -43,19 +28,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/statusTV"
-        android:layout_toRightOf="@+id/mockServerButton"
         android:checked="false"
         android:onClick="toggleRealServer"
         android:text="@string/startButton"
-        android:textOff="START REAL SERVER"
-        android:textOn="STOP REAL SERVER"
+        android:textOff="START SERVER"
+        android:textOn="STOP SERVER"
         android:textSize="12sp" />
 
     <TextView
         android:id="@+id/statusTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/mockServerButton"
         android:text="@string/statusLabel"
         android:textSize="18sp" />
 

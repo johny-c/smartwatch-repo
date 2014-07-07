@@ -274,7 +274,7 @@ static void drv_BT_flush(void) {
 			int a, b;
 			for (a = 0; a < pixel; a++)
 				for (b = 0; b < pixel; b++)
-					bitbuf[y * xsize + x + a * xsize + b] = drv_IMG_FB[row * DCOLS + col];
+					bitbuf[y * xsize + x + a * xsize + b] = drv_BT_FB[row * DCOLS + col]; // WAS drv_IMG_FB
 	}
     }
 

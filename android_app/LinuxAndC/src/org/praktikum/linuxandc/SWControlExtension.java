@@ -32,14 +32,11 @@
 package org.praktikum.linuxandc;
 
 
-import java.io.ByteArrayOutputStream;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
 import android.graphics.BitmapFactory.Options;
 import android.os.Handler;
@@ -166,33 +163,24 @@ class SWControlExtension extends ControlExtension implements Constants {
     	private byte[] imgBytes;
     	private int[] imgColors;
     	private Bitmap bitmap;
-    	private final int intAlpha = 255;
+    	private static final int intAlpha = 255; // alpha is always 255 (FF) so we don't need to transmit it
     	private int imgLen;
     	
       @Override
       public void onReceive(Context context, Intent intent) {
-    	  
     	  Log.d("ImageReceiver", "onReceive called");
-    	  /*
-          Intent i = new Intent(Control.Intents.CONTROL_DISPLAY_DATA_INTENT);
-          i.putExtra(Control.Intents.EXTRA_X_OFFSET, 0);
-          i.putExtra(Control.Intents.EXTRA_Y_OFFSET, 0);
-          i.putExtra(Control.Intents.EXTRA_DATA, 
-        		  intent.getByteArrayExtra(BYTE_ARRAY_KEY));
-    	  sendToHostApp(i);
-    	  */
+
     	  imgBytes = intent.getByteArrayExtra(BYTE_ARRAY_KEY);
     	  imgLen = imgBytes.length;
     	  int imgInts[] = new int[imgLen];
-    	  //String s = "";
 
+    	  // Bytes come as signed chars although RGBA struct defines them as unsigned
+    	  // so we transform them to integers
     	  for(int i=0; i<imgLen; i++){
     		  imgInts[i] = imgBytes[i] & 0xFF;
-    		  //imgBytes[i] = (byte) (imgBytes[i] & 0xFF);
-    		  //s += (int)  (imgBytes[i] & 0xFF) + " ";
     	  }
     	  
-    	  
+    	  // Recreate the image pixels colors
     	  imgColors = new int[width*height];
     	  for (int i = 0; i < imgLen - 3; i += 4) {
     		  imgColors[i / 4] = (intAlpha << 24) | (imgInts[i] << 16) | (imgInts[i + 1] << 8) | imgInts[i + 2];
@@ -200,10 +188,6 @@ class SWControlExtension extends ControlExtension implements Constants {
     	  bitmap = Bitmap.createBitmap(imgColors, width, height, Bitmap.Config.ARGB_8888);
     	  
     	  
-    	  //Log.d(LOG_TAG, s);
-    	  //bitmap = BitmapFactory.decodeByteArray(imgBytes, 0, IMG_BUFFER_SIZE, rgbaOptions);
-    	  //ByteArrayOutputStream outputStream = new ByteArrayOutputStream(256);
-          //bitmap.compress(CompressFormat.PNG, 100, outputStream);
     	  showBitmap(bitmap);
       }
     };

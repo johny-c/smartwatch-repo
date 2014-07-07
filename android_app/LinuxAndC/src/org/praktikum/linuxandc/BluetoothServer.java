@@ -2,6 +2,7 @@ package org.praktikum.linuxandc;
 
 import java.io.IOException;
 import java.util.UUID;
+import java.util.concurrent.Callable;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothServerSocket;
@@ -10,7 +11,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.util.Log;
 
-public class BluetoothServer implements Runnable, Constants {
+public class BluetoothServer implements Callable<DataShifter>, Constants {
 	
 	private static final String TAG = "BluetoothServer";
 	private final BluetoothServerSocket mmServerSocket;
@@ -40,60 +41,68 @@ public class BluetoothServer implements Runnable, Constants {
 		mmServerSocket = tmp;
 	}
 	
-	
-
 	@Override
-	public void run() {
-
+	public DataShifter call() throws Exception {
+		
+		dataShifter = null;
+		
 		try {
 			socket = mmServerSocket.accept();
 		} catch (IOException e) {
 			Log.e(TAG, e.toString());
 			closeStreams();
-			return;
+			return null;
 		}
 		
 		try {
 			mmServerSocket.close();
 		} catch (IOException e) {
 			Log.e(TAG, e.toString());
-			return;
 		}
 
 		
 		if(socket != null){			
 	        mHandler.obtainMessage(DEVICE_UPDATE, 0 , 0, socket.getRemoteDevice().getName()).sendToTarget();
 			dataShifter = new DataShifter(socket, mHandler, mContext);
-			new Thread(dataShifter).run();      
+			new Thread(dataShifter).start();   
 		}
 		
-		closeStreams();
-		mHandler.obtainMessage(SERVER_STOPPED, 0 , 0, "").sendToTarget();
+		return dataShifter;
 	}
 	
 	
-	
-	
-	void cancel() {
-		closeStreams();
-		mHandler.obtainMessage(SERVER_STOPPED, 0 , 0, "").sendToTarget();
-	}
 	
 	
 	
 	/** Will cancel the listening socket, and cause the thread to finish */
 	private void closeStreams() {
-		try {
-			if(mmServerSocket != null)
-				mmServerSocket.close();
-		} catch (IOException e) {
-			Log.e(TAG, e.toString());
-		}
 		
 		if(dataShifter != null){
-			dataShifter.cancel();
+			dataShifter.stop();
 		}
-				
+		
+    	if(socket != null){
+    		try {
+    			socket.close();
+			} catch (IOException e) {
+				Log.e(TAG, "IOException caught while closing mmComputerSocket");
+			}
+    	}
+    	  	
+		if(mmServerSocket != null){
+			try {
+				mmServerSocket.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}			
 	}
+
+
+
+
+
+
 
 }

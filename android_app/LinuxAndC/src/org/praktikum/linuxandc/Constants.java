@@ -11,6 +11,8 @@ public interface Constants {
 	public static final int DEVICE_UPDATE = 7;
 	public static final int SERVER_STOPPED = 8;
 	public static final int DATA_UPDATE = 9;
+	public static final int SHIFTER_PAUSED = 10;
+	public static final int SHIFTER_RESUMED = 11;
 	//public static final int SW_CONNECTED = 7;
 	//public static final int SW_DISCONNECTED = 8;
 	

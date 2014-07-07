@@ -2,11 +2,16 @@ package org.praktikum.linuxandc;
 
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothClass;
 import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -31,11 +36,13 @@ public class MainActivity extends ActionBarActivity implements Constants {
 	private static final String TAG = "MainActivity";
 	private static final boolean D = true;
 	private static BluetoothAdapter mBluetoothAdapter;
-	private MockServer mockServer;
+	//private MockServer mockServer;
 	private BluetoothServer bluetoothServer;
+	private DataShifter dataShifter;
+	private ExecutorService THREAD_POOL;
 	
 	private static TextView statusTV, pairedDevicesTV;
-	private static ToggleButton realServerButton, mockServerButton;
+	private static ToggleButton realServerButton; //, mockServerButton;
 	private static ListView pairedDevicesLV;
 	private ArrayList<String> devicesList;
 	
@@ -72,12 +79,25 @@ public class MainActivity extends ActionBarActivity implements Constants {
 						Log.i(TAG, "RECEIVED NEW IMAGE FROM PC, size = " + msg.arg1 + " bytes");
 					statusTV.setText("NEW FRAME ("+msg.arg2+") RECEIVED FROM LINUX COMPUTER!");
 					break;
-					
+				
+					/*
 				case SERVER_STOPPED:
 					if(D){
 						Log.i(TAG, "SERVER STOPPED");
 					}
 					statusTV.setText("Server is now stopped!");	
+					break;
+					*/
+					
+				case SHIFTER_PAUSED:
+					if(D){
+						Log.i(TAG, "SHIFTER PAUSED");
+					}	
+					break;
+				case SHIFTER_RESUMED:
+					if(D){
+						Log.i(TAG, "SHIFTER RESUMED");
+					}	
 					break;
 			}
 		}
@@ -97,6 +117,8 @@ public class MainActivity extends ActionBarActivity implements Constants {
 	   	 Intent serviceIntent = new Intent(this, SWExtensionService.class);
 	   	 serviceIntent.setAction(Control.Intents.CONTROL_START_INTENT);
 	   	 startService(serviceIntent);
+	   	 
+	   	THREAD_POOL = Executors.newCachedThreadPool();
 	}
 	
 
@@ -135,7 +157,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
 			
 			statusTV = (TextView) rootView.findViewById(R.id.statusTV);
 			realServerButton = (ToggleButton) rootView.findViewById(R.id.realServerButton);
-			mockServerButton = (ToggleButton) rootView.findViewById(R.id.mockServerButton);
+			//mockServerButton = (ToggleButton) rootView.findViewById(R.id.mockServerButton);
 			pairedDevicesTV = (TextView) rootView.findViewById(R.id.pairedDevicesTV);
 			//listBTDevicesButton =  (Button) rootView.findViewById(R.id.listBTDevicesButton);	
 			//swConnStatusTV = (TextView) rootView.findViewById(R.id.swConnStatusTV);
@@ -146,7 +168,7 @@ public class MainActivity extends ActionBarActivity implements Constants {
 			if (mBluetoothAdapter == null) {
 				statusTV.setText("Device does not support bluetooth!");
 				realServerButton.setEnabled(false);
-				mockServerButton.setEnabled(false);
+				//mockServerButton.setEnabled(false);
 			}
 			return rootView;
 		}
@@ -155,16 +177,15 @@ public class MainActivity extends ActionBarActivity implements Constants {
 	
 	protected void onDestroy(){
 		super.onDestroy();
-		stopMockServer();
-		stopRealServer();
-		
+		//stopMockServer();	
 		 Log.d(TAG, "Stoping SWService with Control stop intent");
 		 Intent serviceIntent = new Intent(this, SWExtensionService.class);
 		 serviceIntent.setAction(Control.Intents.CONTROL_STOP_INTENT);
 		 stopService(serviceIntent);
+		 stopRealServer();
 	}
 
-
+/*
 	public void toggleMockServer(View button){
 		mockServerButton.setEnabled(false);
 		
@@ -199,31 +220,48 @@ public class MainActivity extends ActionBarActivity implements Constants {
 			//while(mockServer.getStatus() != AsyncTask.Status.FINISHED);
 		}	
 	}
+	*/
 	
 	
-	
+
+
+
 	public void toggleRealServer(View button){
 		realServerButton.setEnabled(false);
-
-		String s = realServerButton.isChecked() ? "RUNNING" : "STOPPED";
-		Toast.makeText(this, "Real Server is "+s, Toast.LENGTH_SHORT).show();
 		
 		if(realServerButton.isChecked()){
-			boolean paired = listPairedDevices();
-			if(!paired){
-				statusTV.setText("Pair phone with computer and smartwatch!");
+			//mockServerButton.setEnabled(false);	
+			if(bluetoothServer == null){
 				realServerButton.setChecked(false);
-				realServerButton.setEnabled(true);
+				startRealServer();
 				return;
 			}
-			mockServerButton.setEnabled(false);	
-			startRealServer();
-			realServerButton.setChecked(true);
+			else{
+				if(dataShifter != null) {
+					// Resuming data shifting
+					Toast.makeText(this, "Resuming Data Shifter", Toast.LENGTH_SHORT).show();
+					dataShifter.resume();
+					realServerButton.setChecked(true);
+				}
+				else{
+					// If server has started but no pc is connected yet
+					realServerButton.setChecked(false);
+					return;
+				}
+			}			
 		}
 		else {
-			stopRealServer();
-			realServerButton.setChecked(false);
-			mockServerButton.setEnabled(true);	
+			if(dataShifter != null) {
+				Toast.makeText(this, "Pausing Data Shifter", Toast.LENGTH_SHORT).show();
+				dataShifter.pause();
+				realServerButton.setChecked(false);
+			}
+			else{
+				// If server has started but no pc is connected yet
+				realServerButton.setChecked(false);
+				return;
+			}
+			//mockServerButton.setEnabled(true);	
 		}
 		
 		realServerButton.setEnabled(true);
@@ -231,20 +269,63 @@ public class MainActivity extends ActionBarActivity implements Constants {
 	
 	
 	private void startRealServer(){
-		bluetoothServer = new BluetoothServer(mHandler, this);
-		new Thread(bluetoothServer).start();
-		statusTV.setText("Now listening for BT connections...");
-	}
-	
-	
-	private void stopRealServer(){
-		if(bluetoothServer != null){
-			bluetoothServer.cancel();
+		// If Server is not started
+		// Check if the smartwatch and a pc is paired with the phone
+		boolean paired = listPairedDevices();
+		if(!paired){
+			statusTV.setText("Pair phone with computer and smartwatch!");		
+		}
+		else{		
+			// Start a Server instance
+			bluetoothServer = new BluetoothServer(mHandler, this);
+			statusTV.setText("Now listening for BT connections...");
+			Toast.makeText(this, "Now listening for BT connections...", Toast.LENGTH_SHORT).show();
+			// Get the dataShifter thread as a future result without blocking UI
+			Future<DataShifter> future = THREAD_POOL.submit(bluetoothServer);		
+			DataShifterGetter dsg = new DataShifterGetter();	
+			dsg.execute(future);
 		}
 	}
+	
+	
+	private void stopRealServer() {
+		if(dataShifter != null){
+			dataShifter.stop();
+		}
+	}
+	
+	
+	
+	// Get the data shifter object asynchronously
+	private class DataShifterGetter extends AsyncTask<Future<DataShifter>, Void, DataShifter> {
+
+		@Override
+		protected DataShifter doInBackground(Future<DataShifter>... futures) {
+			try {
+				dataShifter = futures[0].get();
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				e.printStackTrace();
+			}
+			return dataShifter;
+		}
+		
+	    protected void onPostExecute(DataShifter result) {
+	        Log.d("UI thread", "I am the UI thread");
+	        if(result != null){
+	        	statusTV.setText("Now shifting data !!!");
+				realServerButton.setTextOn("PAUSE SHIFTER");
+				realServerButton.setTextOff("RESUME SHIFTER");
+				realServerButton.setChecked(true);
+				realServerButton.setEnabled(true);
+	        }
+	        else{
+	        	statusTV.setText("Could not create data shifter...");
+	        }
+	    }
+	}
 	 
-	
-	
 	
 	public boolean listPairedDevices(){		
 		
