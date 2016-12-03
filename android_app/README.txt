@@ -3,17 +3,17 @@ Contents of the android_app folder
 
 A. LinuxAndC folder contains our Android project
 
-B. appcombat_v7 is a library needed for compatibility with other Android versions 
+B. appcombat_v7 is a library needed for compatibility with previous Android versions 
 
-C. SmartExtensionUtils is a library by Sony that all Smart Extensions 
-	(Android apps that use accessories like the Smartwatch) have to use
+C. SmartExtensionUtils is a library by Sony that all Sony Smart Extensions 
+	(Android apps that use accessories like the Smartwatch) must use
 	
 D. SampleControlExtension is a sample app by Sony that uses the Control API
 	(see E)
 	
-E. Praktikum Android App Documentation is a summarized Documentation of everything 		that has to do with the Android part of the project
+E. Praktikum Android App Documentation.pdf is a summarized Documentation of everything that has to do with the Android part of the project
 
-F. SmartExtension_SampleExtensionTutorial.pdf, SmartExtension API Specification.pdf 	  and SmartWatch_WP_1.pdf are documentations by Sony.
+F. SmartExtension_SampleExtensionTutorial.pdf, SmartExtension API Specification.pdf and SmartWatch_WP_1.pdf are documentations by Sony.
 
 
 Notes
@@ -26,7 +26,7 @@ except for:
 which is meant for the headset accessory, and 
 
 2. SamplePreferenceActivity.java, 
-which is meant for the user handling the settings of the app. 
+which is meant for editing the settings of the app by the user. 
 (We have no settings to be handled by the user)
 
 
@@ -34,7 +34,7 @@ which is meant for the user handling the settings of the app.
 Otherwise, new classes are: 
 
 1. MainActivity.java, 
-which implements the UI of the Android app
+   implements the UI of the Android app
 
 2. BluetoothServer.java,
 which starts listening for connections of bluetooth devices. 

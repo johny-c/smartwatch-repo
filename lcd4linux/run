@@ -16,6 +16,6 @@ make all
 
 make install
 
-#cp ./lcd4linux.conf /etc/lcd4linux.conf
+cp ./lcd4linux.conf /etc/lcd4linux.conf
 chmod 600 /etc/lcd4linux.conf
 chown root.root /etc/lcd4linux.conf

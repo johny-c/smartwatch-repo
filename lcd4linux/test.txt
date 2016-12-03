@@ -1,0 +1,293 @@
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /bin/mkdir -p
+checking for gawk... no
+checking for mawk... mawk
+checking whether make sets $(MAKE)... yes
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for style of include used by make... GNU
+checking dependency style of gcc... gcc3
+checking how to run the C preprocessor... gcc -E
+checking whether ln -s works... yes
+checking whether make sets $(MAKE)... (cached) yes
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking if malloc debugging is wanted... no
+checking for log in -lm... yes
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+configure: checking location of ncurses.h file...
+Found ncurses on /usr/include/ncurses.h
+checking for ncurses version... 5.9
+checking for X... libraries , headers 
+checking for gethostbyname... yes
+checking for connect... yes
+checking for remove... yes
+checking for shmat... yes
+checking for IceConnectionNumber in -lICE... yes
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking X11/Xlib.h usability... yes
+checking X11/Xlib.h presence... yes
+checking for X11/Xlib.h... yes
+checking X11/Xutil.h usability... yes
+checking X11/Xutil.h presence... yes
+checking for X11/Xutil.h... yes
+checking gd/gd.h usability... no
+checking gd/gd.h presence... no
+checking for gd/gd.h... no
+checking gd.h usability... no
+checking gd.h presence... no
+checking for gd.h... no
+checking jpeglib.h usability... yes
+checking jpeglib.h presence... yes
+checking for jpeglib.h... yes
+checking sys/io.h usability... yes
+checking sys/io.h presence... yes
+checking for sys/io.h... yes
+checking usb.h usability... yes
+checking usb.h presence... yes
+checking for usb.h... yes
+checking libusb-1.0/libusb.h usability... no
+checking libusb-1.0/libusb.h presence... no
+checking for libusb-1.0/libusb.h... no
+checking luise.h usability... no
+checking luise.h presence... no
+checking for luise.h... no
+checking serdisplib/serdisp.h usability... no
+checking serdisplib/serdisp.h presence... no
+checking for serdisplib/serdisp.h... no
+checking st2205.h usability... no
+checking st2205.h presence... no
+checking for st2205.h... no
+checking rfb/rfb.h usability... no
+checking rfb/rfb.h presence... no
+checking for rfb/rfb.h... no
+checking linux/lcd-linux.h usability... no
+checking linux/lcd-linux.h presence... no
+checking for linux/lcd-linux.h... no
+checking ftdi.h usability... no
+checking ftdi.h presence... no
+checking for ftdi.h... no
+checking if python support is wanted... no
+checking if raw port I/O is wanted... no
+checking asm/io.h usability... no
+checking asm/io.h presence... no
+checking for asm/io.h... no
+checking linux/parport.h usability... yes
+checking linux/parport.h presence... yes
+checking for linux/parport.h... yes
+checking linux/ppdev.h usability... yes
+checking linux/ppdev.h presence... yes
+checking for linux/ppdev.h... yes
+checking which drivers to compile... done
+checking which plugins to compile... done
+checking asm/types.h usability... yes
+checking asm/types.h presence... yes
+checking for asm/types.h... yes
+checking for DBUS... no
+checking for asm/types.h... (cached) yes
+checking linux/dvb/frontend.h usability... yes
+checking linux/dvb/frontend.h presence... yes
+checking for linux/dvb/frontend.h... yes
+checking nmeap.h usability... no
+checking nmeap.h presence... no
+checking for nmeap.h... no
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking for ld used by GCC... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for shared library run path origin... done
+checking for iconv... yes
+checking for working iconv... yes
+checking for iconv declaration... 
+         extern size_t iconv (iconv_t cd, char * *inbuf, size_t *inbytesleft, char * *outbuf, size_t *outbytesleft);
+checking linux/errno.h usability... yes
+checking linux/errno.h presence... yes
+checking for linux/errno.h... yes
+checking linux/isdn.h usability... yes
+checking linux/isdn.h presence... yes
+checking for linux/isdn.h... yes
+checking for mpd_connection_new in -lmpdclient... no
+checking dbus/dbus.h usability... no
+checking dbus/dbus.h presence... no
+checking for dbus/dbus.h... no
+checking mysql/mysql.h usability... no
+checking mysql/mysql.h presence... no
+checking for mysql/mysql.h... no
+checking net/if_ppp.h usability... yes
+checking net/if_ppp.h presence... yes
+checking for net/if_ppp.h... yes
+checking sqlite3.h usability... no
+checking sqlite3.h presence... no
+checking for sqlite3.h... no
+checking sys/vfs.h usability... yes
+checking sys/vfs.h presence... yes
+checking for sys/vfs.h... yes
+checking for linux/wireless.h... yes
+checking for dirent.h that defines DIR... yes
+checking for library containing opendir... none required
+checking for ANSI C header files... (cached) yes
+checking arpa/inet.h usability... yes
+checking arpa/inet.h presence... yes
+checking for arpa/inet.h... yes
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking netdb.h usability... yes
+checking netdb.h presence... yes
+checking for netdb.h... yes
+checking netinet/in.h usability... yes
+checking netinet/in.h presence... yes
+checking for netinet/in.h... yes
+checking for stdlib.h... (cached) yes
+checking for string.h... (cached) yes
+checking sys/ioctl.h usability... yes
+checking sys/ioctl.h presence... yes
+checking for sys/ioctl.h... yes
+checking sys/socket.h usability... yes
+checking sys/socket.h presence... yes
+checking for sys/socket.h... yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking for sys/vfs.h... (cached) yes
+checking syslog.h usability... yes
+checking syslog.h presence... yes
+checking for syslog.h... yes
+checking termios.h usability... yes
+checking termios.h presence... yes
+checking for termios.h... yes
+checking for unistd.h... (cached) yes
+checking for an ANSI C-conforming const... yes
+checking for inline... inline
+checking for off_t... yes
+checking for pid_t... yes
+checking for size_t... yes
+checking for ssize_t... yes
+checking whether time.h and sys/time.h may both be included... yes
+checking for uid_t in sys/types.h... yes
+checking whether closedir returns void... no
+checking for error_at_line... yes
+checking vfork.h usability... no
+checking vfork.h presence... no
+checking for vfork.h... no
+checking for fork... yes
+checking for vfork... yes
+checking for working fork... yes
+checking for working vfork... (cached) yes
+checking whether gcc needs -traditional... no
+checking sys/select.h usability... yes
+checking sys/select.h presence... yes
+checking for sys/select.h... yes
+checking for sys/socket.h... (cached) yes
+checking types of arguments for select... int,fd_set *,struct timeval *
+checking return type of signal handlers... void
+checking whether lstat correctly handles trailing slash... yes
+checking whether stat accepts an empty string... no
+checking for strftime... yes
+checking for working strtod... yes
+checking for dup2... yes
+checking for floor... yes
+checking for gethostbyname... (cached) yes
+checking for gettimeofday... yes
+checking for memmove... yes
+checking for memset... yes
+checking for pow... yes
+checking for putenv... yes
+checking for regcomp... yes
+checking for select... yes
+checking for socket... yes
+checking for sqrt... yes
+checking for strcasecmp... yes
+checking for strchr... yes
+checking for strcspn... yes
+checking for strdup... yes
+checking for strerror... yes
+checking for strncasecmp... yes
+checking for strndup... yes
+checking for strpbrk... yes
+checking for strrchr... yes
+checking for strstr... yes
+checking for strtol... yes
+checking for strtoul... yes
+checking for uname... yes
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating config.h
+config.status: config.h is unchanged
+config.status: executing depfiles commands
+-----------------------------------------
+included drivers:
+   drv_ASTUSB.o drv_BeckmannEgle.o drv_Bluetooth.o drv_BWCT.o drv_Crystalfontz.o drv_Curses.o drv_Cwlinux.o drv_D4D.o drv_dpf.o drv_EA232graphic.o drv_EFN.o drv_FutabaVFD.o drv_FW8888.o drv_G15.o drv_GLCD2USB.o drv_HD44780.o drv_IRLCD.o drv_LCD2USB.o drv_LCDTerm.o drv_LEDMatrix.o drv_LPH7508.o drv_LW_ABP.o drv_M50530.o drv_MatrixOrbital.o drv_MatrixOrbitalGX.o drv_MilfordInstruments.o drv_Newhaven.o drv_Noritake.o drv_NULL.o drv_Pertelian.o drv_PHAnderson.o drv_PICGraphic.o drv_picoLCD.o drv_picoLCDGraphic.o drv_RouterBoard.o drv_Sample.o drv_SamsungSPF.o drv_ShuttleVFD.o drv_SimpleLCD.o drv_T6963.o drv_TeakLCM.o drv_Trefon.o drv_USBHUB.o drv_USBLCD.o drv_WincorNixdorf.o drv_X11.o drv_Image.o drv_generic_text.o drv_generic_graphic.o drv_generic_gpio.o drv_generic_parport.o drv_generic_serial.o drv_generic_i2c.o drv_generic_keypad.o
+-----------------------------------------
+included plugins:
+   plugin_apm.o plugin_button_exec.o plugin_asterisk.o plugin_cpuinfo.o plugin_diskstats.o plugin_dvb.o plugin_exec.o plugin_event.o plugin_file.o plugin_fifo.o plugin_hddtemp.o plugin_huawei.o plugin_i2c_sensors.o plugin_iconv.o plugin_imon.o plugin_isdn.o plugin_kvv.o plugin_loadavg.o plugin_meminfo.o plugin_netdev.o plugin_netinfo.o plugin_pop3.o plugin_ppp.o plugin_proc_stat.o plugin_raspi.o plugin_sample.o plugin_seti.o plugin_statfs.o plugin_uname.o plugin_uptime.o plugin_w1retap.o plugin_wireless.o plugin_xmms.o
+-----------------------------------------
+
+checking how to print strings... printf
+checking for a sed that does not truncate output... /bin/sed
+checking for fgrep... /bin/grep -F
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking the maximum length of command line arguments... 1572864
+checking whether the shell understands some XSI constructs... yes
+checking whether the shell understands "+="... yes
+checking how to convert x86_64-unknown-linux-gnu file names to x86_64-unknown-linux-gnu format... func_convert_file_noop
+checking how to convert x86_64-unknown-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for ar... ar
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for mt... mt
+checking if mt is a manifest tool... no
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... yes
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/bin/ld -m elf_x86_64) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+make  all-am
+make[1]: Entering directory `/home/johny/git/Smartwatch/lcd4linux'
+make[1]: Leaving directory `/home/johny/git/Smartwatch/lcd4linux'
+make[1]: Entering directory `/home/johny/git/Smartwatch/lcd4linux'
+test -z "/usr/local/bin" || /bin/mkdir -p "/usr/local/bin"
+  libtool   --mode=install /usr/bin/install -c lcd4linux '/usr/local/bin'
+libtool: install: /usr/bin/install -c lcd4linux /usr/local/bin/lcd4linux
+make[1]: Nothing to be done for `install-data-am'.
+make[1]: Leaving directory `/home/johny/git/Smartwatch/lcd4linux'

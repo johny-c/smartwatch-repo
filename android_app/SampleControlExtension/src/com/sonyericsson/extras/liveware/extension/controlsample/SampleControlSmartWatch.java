@@ -36,6 +36,8 @@ import com.sonyericsson.extras.liveware.extension.util.control.ControlExtension;
 import com.sonyericsson.extras.liveware.extension.util.control.ControlTouchEvent;
 //import com.sonyericsson.extras.liveware.sdk.R;
 
+
+import android.R;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

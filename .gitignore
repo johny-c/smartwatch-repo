@@ -1,12 +1,63 @@
-# Folders
-.settings
-.metadata
-RemoteSystemsTempFiles/
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
 
-# Files
-.cproject
-.project
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases #
+######################
 *.log
-*.*~
+*.sql
+*.sqlite
 
-# Binaries
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+*~
+
+# Latex generated files #
+#########################
+*.log
+*.aux
+*.blg
+*.out
+*.gz
+*.bbl
+
+# IDE generated files #
+#######################
+.kdev*
+.kdev*/
+*.kdeiv*
+*.project
+*.classpath
+.settings/
+
+# Binaries #
+############
+*.apk
+*.pdf
+bin/
+gen/
