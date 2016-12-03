@@ -55,6 +55,10 @@ Thumbs.db
 *.classpath
 .settings/
 Codeformatter.xml
+bin/
+gen/
+proguard-project.txt
+project.properties
 
 # Binaries #
 ############
