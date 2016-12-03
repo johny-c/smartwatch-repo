@@ -54,6 +54,7 @@ Thumbs.db
 *.project
 *.classpath
 .settings/
+Codeformatter.xml
 
 # Binaries #
 ############
@@ -61,3 +62,7 @@ Thumbs.db
 *.pdf
 bin/
 gen/
+
+# svn generated files #
+#######################
+.svn/
