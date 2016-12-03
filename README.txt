@@ -1,3 +1,19 @@
+Linux & C (Practical Course) Project
+====================================
+====================================
+
+Motivation
+========== 
+Future drivers could wear a device like a smartwatch that monitors their driving ability but also the car's state. For example, the tires air pressure could be transmitted. In this project, we implement a prototype similar to Nissan's Nismo Smartwatch that monitors the system (car) and sends the collected data wirelessly to the smartwatch. For simulation purposes instead of actual car data, we send system information from a Linux-PC.
+
+
+Goals
+=====
+1. Develop an open GUI for the smartwatch
+2. Implement a display driver for controlling wireless displays (extension of LCD4Linux)
+3. Implement a protocol for reading and displaying data on the smartwatch.
+
+
 Contents
 ========
 
